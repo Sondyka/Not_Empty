@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 
-require("DB/connect.php");
+require("DB/connection.php");
 require("login.php");
 require("authorization.php");
 echo '<!DOCTYPE html>
