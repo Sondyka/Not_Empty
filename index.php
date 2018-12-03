@@ -3,9 +3,9 @@ session_start();
 
 require("DB/connect.php");
 require("login.php");
-require("auto.php");
+require("authorization.php");
 echo '<!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
 
@@ -22,7 +22,7 @@ echo '<!DOCTYPE html>
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
-
+    <link href="css/authorization.css" rel="stylesheet">
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -38,12 +38,10 @@ echo '<!DOCTYPE html>
 <body>
    
     <div class="brand">Автоматизоване місце <a href ="#" data-target="#LoginModal" data-toggle="modal"  id="log_in">викладача</a></div>
-    <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>'?>
   
     <!-- Navigation -->
-   <?php 
- 
-    echo' <nav class="navbar navbar-default" role="navigation">
+
+  <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -63,10 +61,10 @@ echo '<!DOCTYPE html>
                         <a href="index.php">Головна</a>
                     </li>
                     <li>
-                        <a href="about.html">Розклад</a>
+                        <a href="schedule.php">Розклад</a>
                     </li>
                     <li>
-                        <a href="blog.html">Для студентів</a>
+                        <a href="blog.php">Для студентів</a>
                     </li>
                 </ul>
             </div>
@@ -148,7 +146,7 @@ echo '<!DOCTYPE html>
                         <strong>to showcase your content</strong>
                     </h2>
                     <hr>
-                    <p>Use as many boxes as you like, and put anything you want in them! They are great for just about anything, the sky the limit!</p>
+                    <p>Use as many boxes as you like, and put anything you want in them! They are great for just schedule anything, the sky the limit!</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                 </div>
             </div>
