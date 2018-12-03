@@ -1,4 +1,9 @@
 <?php 
+session_start(); 
+
+require("DB/connection.php");
+require("login.php");
+require("authorization.php");
 echo '<!DOCTYPE html>
 <html lang="uk">
 
