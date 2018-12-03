@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/Hernya/model/constants.php");
+require($_SERVER['DOCUMENT_ROOT']."/Home/model/constants.php");
 
 $con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 if (mysqli_connect_errno())
