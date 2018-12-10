@@ -39,10 +39,10 @@ echo '<!DOCTYPE html>
 
       <div class="brand">Автоматизоване місце <a href ="#" data-target="#LoginModal" data-toggle="modal"  id="log_in">викладача</a></div>
 
-    <!-- Navigation -->
+    
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+           
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -51,7 +51,7 @@ echo '<!DOCTYPE html>
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.php">Business Casual</a>
+                <a class="navbar-brand" href="index.php">Місце викладача</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -82,10 +82,12 @@ echo '<!DOCTYPE html>
                     </h2>
                     <hr>
                 </div>
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
-                   </div>
+                <div class="col-md-6">';
+               // require("excel.php");
+               echo' </div>
+                <div class="col-md-6">';
+                require("file.php");
+                  echo' </div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -98,9 +100,24 @@ echo '<!DOCTYPE html>
                         <strong>Team</strong>
                     </h2>
                     <hr>
-                </div>
-           
-                <div class="clearfix"></div>
+                </div>';
+                
+                $tbl='SELECT * FROM `rozklad` 
+                INNER JOIN `group` ON `rozklad`.`id_group` = `group`.`id_group`
+                INNER JOIN `subject` ON `rozklad`.`id_subject` = `subject`.`id_subject`
+                INNER JOIN `audience` ON `rozklad`.`id_audience` = `audience`.`id_audience`
+                INNER JOIN `weekday` ON `rozklad`.`id_week` = `weekday`.`id_week`
+                WHERE `rozklad`.`id_week`=1';
+                if ($result = $con->query($tbl)) {
+
+                    /* fetch associative array */
+                    while ($row = $result->fetch_assoc()) {
+
+echo $row['name_group']." ".$row['name_subject']." ".$row['audience_number']." ".$row['weekday'];
+
+                    }}
+            
+               echo' <div class="clearfix"></div>
             </div>
         </div>
 
