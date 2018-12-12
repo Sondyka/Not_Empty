@@ -83,10 +83,10 @@ echo '<!DOCTYPE html>
                     <hr>
                 </div>
                 <div class="col-md-6">';
-               // require("excel.php");
+                require("excel.php");
                echo' </div>
                 <div class="col-md-6">';
-                require("file.php");
+               // require("file.php");
                   echo' </div>
                 <div class="clearfix"></div>
             </div>
