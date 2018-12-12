@@ -14,7 +14,7 @@ $data=$_POST;
 
 		if (!empty($user)) {
 			$_SESSION['logged_user'] = $user;
-header("Location: http://localhost/Hernya/blog.html" ); 
+header("Location: http://localhost/Home/adminka/charts.php" ); 
 			
 		} else {
 		
