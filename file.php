@@ -18,13 +18,17 @@
     ?>
 
 <?php
-$uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/uploads/';
+if (isset($_POST['userfile']) && isset($_POST['down_file'])){
+$uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/adminka/uploads/';
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploaddir . 
 	$_FILES['userfile']['name'])) {
     print "File is valid, and was successfully uploaded.";
+
+
+    
 } else {
     print "There some errors!";
-}
+}}
 ?>
 
     <form class="addfiles" enctype="multipart/form-data" method="post" >
@@ -34,7 +38,6 @@ if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploaddir .
    <i class="fas fa-download"></i>
     <span class="js-fileName">Оберіть файл</span>
   </label>
-  <input type="submit" class="btn btn-outline-dark" >
-</div>
-     
+  <input type="submit" name='down_file' class="btn btn-outline-dark" >
+</div>  
 </form>
