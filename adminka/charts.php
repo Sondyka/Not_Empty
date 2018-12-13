@@ -58,14 +58,34 @@
         <div class="col-md-6">
           <div class="tile">
             <h3 class="tile-title">План на семестр</h3>
-           
+            <form method="post" action='down_excel.php' enctype="multipart/form-data">
+                 
+                 <div>
+                   <label for="excel">Оберіть </label>
+                   <input type="file" id="excel" name="excelfile" accept=".xls, .xlsx">
+                 </div>
+                 <div>
+                   <button name='downexcel' class="btn btn-outline-dark" >Вперед</button>
+                 </div>
+               </form>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="tile">
             <h3 class="tile-title">Розклад пар</h3>
-           
+            <form method="post" action='down_schedule.php' enctype="multipart/form-data">
+                 
+  <div>
+    <label for="sched">Оберіть </label>
+    <input type="file" id="sched" name="schedulefile" accept=".xls, .xlsx">
+  </div>
+  <div>
+    <button name='downschedule' class="btn btn-outline-dark" >Вперед</button>
+  </div>
+</form>
+
+
           </div>
         </div>
 
@@ -80,8 +100,8 @@
           <option value="ST">ST</option>
       </select>
   <div>
-    <label for="profile_pic">Оберіть </label>
-    <input type="file" id="profile_pic" name="studfile" accept=".txt, .xls, .xlsx">
+    <label for="stu">Оберіть </label>
+    <input type="file" id="stu" name="studfile" accept=".txt, .xls, .xlsx">
   </div>
   <div>
     <button name='downstudent' class="btn btn-outline-dark" >Вперед</button>
@@ -91,6 +111,22 @@
             
           </div>
         </div>
+
+
+
+
+   <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Приклади</h3>
+           
+          <?php  require('example.php')?>
+
+            
+          </div>
+        </div>
+
+
+
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
