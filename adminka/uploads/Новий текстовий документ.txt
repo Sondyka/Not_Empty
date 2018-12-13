@@ -1,0 +1,146 @@
+
+#include algorithm
+#include ctime
+
+using namespace std;
+#include math.h
+#include iostream
+#include stdio.h
+#include string.h
+#include glut.h
+#include string
+
+void resize(int w, int h)
+{
+	if (h == 0) h = 1;
+	float ratio = w  1.0  h;
+	glViewport(0, 0, w, h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45.0, ratio, 0.1, 10);
+	gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);
+	glMatrixMode(GL_MODELVIEW);
+}
+
+float r2 = 0, r1 = -1.85;
+const int objcount = 8;
+float arr[objcount][3];
+void ran(void)
+{
+
+
+	float x, y;
+	for (int i = 0; i = objcount; i++)
+	{
+		x =	(double)(rand())  RAND_MAX4.5-1.5;
+		
+		arr[i][0] = x;
+		y = (double)(rand())  RAND_MAX 4 - 1.9;
+		arr[i][1] = y;
+		arr[i][2] = 1;
+		
+			}
+
+	
+
+
+}
+
+bool check(float x0, float y0, float r, float x1, float y1)
+{
+	return sqrt((x0 - x1)(x0 - x1) + (y0 - y1)(y0 - y1)) = r;
+}
+
+void chcrash(void)
+{
+	
+	for (int i = 0; i = objcount; i++)
+	{
+		if (check(r2, r1, 0.3, arr[i][0], arr[i][1]))
+		{
+			arr[i][2] = 0;
+		
+		}
+		glPushMatrix();
+		if (arr[i][2] == 1)
+			glColor3f(1.0, 1.0, 1.0);
+		else
+			continue;
+		glColor3f(0.0, 0.33, 0.71);
+		glTranslatef(arr[i][0], arr[i][1], 0.0);
+		glutSolidCube(0.2);
+		glPopMatrix();
+	}
+
+	
+}
+
+void display(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT  GL_DEPTH_BUFFER_BIT);
+	glColor3f(1.0, 0.0, 0.3);
+	glPushMatrix();
+	glTranslatef(r2, r1, 0);
+	glutWireSphere(0.2, 10, 10);
+	glPopMatrix();
+	chcrash();
+	glutSwapBuffers();
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 'd' r2 += 0.17;  break;
+	case 'a' r2 -= 0.17; break;
+	case 'w' r1 += 0.17; break;
+	case 's' r1 -= 0.17; break;
+	case 'i' printf(r2 = %fn , r2); printf(r1 = %fn , r1); break;
+	}
+	if (r2  2.5)r2 = 2.5;
+	if (r1  1.85)r1 = 1.85;
+	if (r2  -2.5)r2 = -2.5;
+	if (r1  -1.85)r1 = -1.85;
+}
+
+
+
+
+void arrow_keys(int keys, int x, int y)
+{
+	switch (keys) {
+	case GLUT_KEY_UP
+		glutFullScreen();
+		break;
+	case GLUT_KEY_DOWN
+		glutReshapeWindow(800, 600);
+		break;
+	default
+		break;
+	}
+}
+
+
+
+
+int main(int argc, char argv) {
+	ran();
+	glutInit(&argc, argv);
+	glutInitWindowPosition(50, 50);
+	glutInitWindowSize(640, 480);
+	glutInitDisplayMode(GLUT_RGB  GLUT_DEPTH  GLUT_DOUBLE);
+	glutCreateWindow(collision);
+	glutIdleFunc(display);
+	glutDisplayFunc(display);
+	glutReshapeFunc(resize);
+	glutKeyboardFunc(keyboard);
+	glutSpecialFunc(arrow_keys);
+
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+
+	glutMainLoop();
+}
