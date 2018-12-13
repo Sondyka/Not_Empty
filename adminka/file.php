@@ -1,22 +1,3 @@
-
-<?php
-
-
-/*function addfiles() {
- if(is_dir( "files")==false){
-    mkdir("files", 0777);
-    echo'bhjbcjhbhb';
-     }
- 
- 
-           if (move_uploaded_file($_FILES['file']['tmp_name'], "files/".basename($_FILES['file']['name'])))
-    {
-        echo "файл успешно загружен";
-    }else
-    echo "mdlsmckl";
-    }*/
-    ?>
-
 <?php
 if (isset($_POST['userfile'])&&isset($_POST['down_file'])){
 $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/uploads/';
