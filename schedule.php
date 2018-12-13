@@ -83,11 +83,10 @@ echo '<!DOCTYPE html>
                     <hr>
                 </div>
                 <div class="col-md-6">';
-                require("excel.php");
+            
                echo' </div>
                 <div class="col-md-6">';
-               // require("file.php");
-                  echo' </div>
+                                  echo' </div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -115,7 +114,8 @@ echo '<!DOCTYPE html>
 
 echo $row['name_group']." ".$row['name_subject']." ".$row['audience_number']." ".$row['weekday'];
 
-                    }}
+                    }
+                }
             
                echo' <div class="clearfix"></div>
             </div>
