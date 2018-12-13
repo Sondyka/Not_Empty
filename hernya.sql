@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Гру 12 2018 р., 22:47
+-- Час створення: Гру 13 2018 р., 22:45
 -- Версія сервера: 10.1.31-MariaDB
 -- Версія PHP: 7.2.3
 
@@ -297,9 +297,9 @@ CREATE TABLE `group` (
 --
 
 INSERT INTO `group` (`id_group`, `name_group`, `kurs`, `count`, `form`) VALUES
-(17, ' ??', '3', 26, '?'),
-(18, ' ??', '3', 10, '?'),
-(19, '??', '2', 22, '?');
+(23, ' ??', '3', 26, '?'),
+(24, ' ??', '3', 10, '?'),
+(25, '??', '2', 22, '?');
 
 -- --------------------------------------------------------
 
@@ -319,22 +319,36 @@ CREATE TABLE `otherheadlines` (
 --
 
 CREATE TABLE `rozklad` (
-  `id_week` int(11) NOT NULL,
-  `id_subject` int(11) NOT NULL,
-  `id_group` int(11) NOT NULL,
-  `id_audience` int(11) NOT NULL,
-  `seq_num` int(11) NOT NULL
+  `weekday` text NOT NULL,
+  `subject` text NOT NULL,
+  `group` text NOT NULL,
+  `audience` text NOT NULL,
+  `seq_num` int(11) NOT NULL,
+  `kurs` text NOT NULL,
+  `form` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Дамп даних таблиці `rozklad`
 --
 
-INSERT INTO `rozklad` (`id_week`, `id_subject`, `id_group`, `id_audience`, `seq_num`) VALUES
-(1, 3, 2, 1, 1),
-(1, 3, 2, 1, 2),
-(3, 3, 3, 2, 3),
-(3, 2, 2, 1, 4);
+INSERT INTO `rozklad` (`weekday`, `subject`, `group`, `audience`, `seq_num`, `kurs`, `form`) VALUES
+('?????????', 'Web-design', 'PI', '151', 2, '3', 'D'),
+('????????', 'Klient-server system', 'PI', '127', 5, '3', 'Z'),
+('??????', 'OS', 'ST', '102', 1, '3', 'D'),
+('??????', 'System prog', 'CS', '133', 3, '1', 'Z'),
+('??????', 'Web-design', 'ST', '151', 2, '4', 'Z'),
+('?????????', 'Web-design', 'CS', '125', 4, '2', 'D'),
+('????????', 'Klient-server system', 'PI', '127', 6, '3', 'Z'),
+('??????', 'System prog', 'PI', '151', 4, '3', 'Z'),
+('?????????', 'Web-design', 'PI', '151', 2, '3', 'D'),
+('????????', 'Klient-server system', 'PI', '127', 5, '3', 'Z'),
+('??????', 'OS', 'ST', '102', 1, '3', 'D'),
+('??????', 'System prog', 'CS', '133', 3, '1', 'Z'),
+('??????', 'Web-design', 'ST', '151', 2, '4', 'Z'),
+('?????????', 'Web-design', 'CS', '125', 4, '2', 'D'),
+('????????', 'Klient-server system', 'PI', '127', 6, '3', 'Z'),
+('??????', 'System prog', 'PI', '151', 4, '3', 'Z');
 
 -- --------------------------------------------------------
 
@@ -364,10 +378,10 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`id_subject`, `name_subject`) VALUES
-(36, '???????? ????????????? ? ?????????? ???????*'),
-(37, '???????? ????????????? ? ?????????? ???????*'),
-(38, '???????? ???????? ??????-????????? ??????*'),
-(39, '??????:');
+(44, '???????? ????????????? ? ?????????? ???????*'),
+(45, '???????? ????????????? ? ?????????? ???????*'),
+(46, '???????? ???????? ??????-????????? ??????*'),
+(47, '??????:');
 
 -- --------------------------------------------------------
 
@@ -386,29 +400,6 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`login`, `password`) VALUES
 ('admin', 'admin');
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `weekday`
---
-
-CREATE TABLE `weekday` (
-  `id_week` int(11) NOT NULL,
-  `weekday` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Дамп даних таблиці `weekday`
---
-
-INSERT INTO `weekday` (`id_week`, `weekday`) VALUES
-(1, 'Monday'),
-(2, 'Tuesday'),
-(3, 'Wednesday'),
-(4, 'Thursday'),
-(5, 'Friday'),
-(6, 'Saturday');
 
 --
 -- Індекси збережених таблиць
@@ -451,12 +442,6 @@ ALTER TABLE `subject`
   ADD PRIMARY KEY (`id_subject`);
 
 --
--- Індекси таблиці `weekday`
---
-ALTER TABLE `weekday`
-  ADD PRIMARY KEY (`id_week`);
-
---
 -- AUTO_INCREMENT для збережених таблиць
 --
 
@@ -470,7 +455,7 @@ ALTER TABLE `commonheadline`
 -- AUTO_INCREMENT для таблиці `group`
 --
 ALTER TABLE `group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблиці `otherheadlines`
@@ -488,13 +473,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT для таблиці `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id_subject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT для таблиці `weekday`
---
-ALTER TABLE `weekday`
-  MODIFY `id_week` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_subject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
