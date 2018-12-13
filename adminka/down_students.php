@@ -1,13 +1,12 @@
 <?php
 require "../Classes/PHPExcel.php";
+require("../DB/connection.php");
 if (isset($_FILES['studfile'])&&isset($_POST['downstudent'])){
-    $filename=$_FILES['studfile']['name'];
-   $select= $_POST['select'];
-echo $filename;
+$filename=$_FILES['studfile']['name'];
+$select= $_POST['select'];
 $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/adminka/uploads/';
-
-if (move_uploaded_file($_FILES['studfile']['tmp_name'], $uploaddir . 
-	$_FILES['studfile']['name'])) {
+$filepath= $uploaddir.$filename;
+if (move_uploaded_file($_FILES['studfile']['tmp_name'],$filepath )) {
 $type =  explode(".", $filename);
 $type= end($type);
   if ($type=='txt'){
@@ -19,30 +18,28 @@ for($i=0;$i<$count;$i++){
 }
 
   }elseif($type=='xls'||$type=='xlsx'){
+    $excelReader = PHPExcel_IOFactory::createReaderForFile($filepath);
+    $excelObj = $excelReader->load($filepath);
+    $worksheet = $excelObj->getSheet(0);
+     $highestRow = $worksheet->getHighestRow(); 
+     $highestColumn = $worksheet->getHighestColumn();
+     $highestColumn = PHPExcel_Cell::columnIndexFromString($highestColumn);
 
-echo "xls";
+     for ($row = 3; $row <= $highestRow; $row++){ 
+             for($i=0; $i<$highestColumn; $i++){ 
 
+               $student = $worksheet->getCellByColumnAndRow($i, $row);
+            echo $student;
+            @mysqli_query($con,' INSERT INTO `students`(`group`, `PIB`, `id_stud`) VALUES ("'.$select.'","'.$student.'",NULL)');
+           
 
-
-$excelReader = PHPExcel_IOFactory::createReaderForFile($uploaddir.$filename);
-$excelObj = $excelReader->load($uploaddir.$filename);
-$worksheet = $excelObj->getSheet(0);
-$highestRow = $worksheet->getHighestDataRow(); // получаем количество строк
-$highestColumn = $worksheet->getHighestDataColumn(); // а так можно получить количество колонок
-for ($col=1; $col < 11;  $col++) 
-{
-   for ($row = 1; $row < $highestRow;  $row++) 
-  {
-
-	
+              }
+            }
     
-		
-			$cell= $worksheet->getCellByColumnAndRow($col, $row);
-			echo $cell;
-	  }
-  }
-  
- 
+}
 
-}}}
+
+}
+unlink($filepath);
+}
   ?>
