@@ -41,5 +41,6 @@ for($i=0;$i<$count;$i++){
 
 }
 unlink($filepath);
+header('Location: http://localhost/Home/adminka/index.php');
 }
   ?>
