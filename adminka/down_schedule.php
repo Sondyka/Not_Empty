@@ -121,6 +121,7 @@ $elem = array();
     
     
         unlink($filepath);
+        header('Location: http://localhost/Home/adminka/index.php');
     }
 
 
