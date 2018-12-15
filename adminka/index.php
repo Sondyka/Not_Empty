@@ -15,19 +15,7 @@
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.php">Викладач</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-      <!-- Navbar Right Menu-->
-     <!--  <ul class="app-nav">
-        <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="Пошук">
-          <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li>
-    
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-          <ul class="dropdown-menu settings-menu dropdown-menu-right">
-          <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-lg"></i> Вийти</a></li>
-          </ul>
-        </li>
-      </ul>-->
+   
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -38,9 +26,10 @@
           <p class="app-sidebar__user-designation">Факультет океанології</p>
         </div>
       </div>
+      
       <ul class="app-menu">
         <li><a class="app-menu__item active" href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Головна</span></a></li>
-        <li><a class="app-menu__item" href="charts.php"><i class="app-menu__icon fa fa-file-o"></i><span class="app-menu__label">Файли</span></a></li>
+        <li><a class="app-menu__item" href="files.php"><i class="app-menu__icon fa fa-file-o"></i><span class="app-menu__label">Файли</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Таблиці</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="table-basic.php"><i class="icon fa fa-circle-o"></i>Базові Таблиці</a></li>
@@ -50,7 +39,7 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Щось тут буде</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="page-invoice.php"><i class="icon fa fa-circle-o"></i> Друковане щось</a></li>
-            <li><a class="treeview-item" href="page-calendar.php"><i class="icon fa fa-circle-o"></i> Календарне щось </a></li>
+           
           </ul>
         </li>
       </ul>
@@ -126,7 +115,7 @@
               <li>Fully responsive and modular code</li>
               <li>Seven Дічь якась including login, user profile and print friendly invoice page</li>
               <li>Smart integration of forgot password on login page</li>
-              <li>Chart.js integration to display responsive charts</li>
+              <li>Chart.js integration to display responsive files</li>
               <li>Widgets to effectively display statistics</li>
               <li>Data Таблиці with sort, search and paginate functionality</li>
               <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>
