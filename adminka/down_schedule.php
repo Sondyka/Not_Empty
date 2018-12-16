@@ -6,6 +6,7 @@ $filename=$_FILES['schedulefile']['name'];
 $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/adminka/uploads/';
 $filepath= $uploaddir.$filename;
 if (move_uploaded_file($_FILES['schedulefile']['tmp_name'],$filepath )) {
+@mysqli_query($con,'DELETE FROM `rozklad`');
 $elem = array();
    $excelReader = PHPExcel_IOFactory::createReaderForFile($filepath);
            $excelObj = $excelReader->load($filepath);
@@ -64,7 +65,7 @@ $elem = array();
                               $elem=array();}
 
                             if($i>=12 && $i<16){                             
-                              $weekday='Середа';
+                              $weekday='Четвер';
                               if($i==14){$pieces=explode(",",$cell0);
                                 array_push($elem,$pieces[0],$pieces[1],$pieces[2]);                  
                                }else 
@@ -76,7 +77,7 @@ $elem = array();
 
                                 if($i>=16 && $i<20){
                                  
-                                  $weekday='Четвер';
+                                  $weekday='П\'ятниця';
                                   if($i==18){$pieces=explode(",",$cell0);
                                     array_push($elem,$pieces[0],$pieces[1],$pieces[2]);                  
                                    }else 
@@ -91,7 +92,7 @@ $elem = array();
                                     if($i>=20 && $i<24){
                                       
                                       
-                                      $weekday='П\'ятниця';
+                                      $weekday='Субота';
                                       if($i==22){$pieces=explode(",",$cell0);
                                         array_push($elem,$pieces[0],$pieces[1],$pieces[2]);                  
                                        }else 
@@ -102,17 +103,7 @@ $elem = array();
                                           @mysqli_query($con,$query);
                                           $elem=array();}
                                         
-                                        if($i>=24 && $i<28){
-                                                                                
-                                          $weekday='Субота';
-                                          if($i==26){$pieces=explode(",",$cell0);
-                                            array_push($elem,$pieces[0],$pieces[1],$pieces[2]);                  
-                                           }else 
-                                           array_push($elem, (string)$cell0);   
-                                            }  
-                                            if (count($elem)==6){ $query='INSERT INTO `rozklad`(`weekday`, `subject`, `group`, `audience`, `seq_num`, `kurs`, `form`) VALUES ("'.$weekday.'", "'.$elem[1].'", "'.$elem[2].'", "'.$elem[5].'", "'.$elem[0].'", "'.$elem[3].'", "'.$elem[4].'")';
-                                              @mysqli_query($con,$query);
-                                              $elem=array();}
+                                       
                                           }
             }
 

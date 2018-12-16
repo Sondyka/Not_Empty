@@ -64,7 +64,7 @@ echo '<!DOCTYPE html>
                         <a href="schedule.php">Розклад</a>
                     </li>
                     <li>
-                        <a href="blog.php">Для студентів</a>
+                        <a href="rating.php">Для студентів</a>
                     </li>
                 </ul>
             </div>

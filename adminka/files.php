@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require("../DB/connection.php");?>
   <head>
 
     <title>Викладач</title>
@@ -27,22 +28,14 @@
           <p class="app-sidebar__user-designation">Факультет океанології</p>
         </div>
       </div>
+      
       <ul class="app-menu">
-        <li><a class="app-menu__item " href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Головна</span></a></li>
+      <li><a class="app-menu__item " href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Головна</span></a></li>
         <li><a class="app-menu__item active" href="files.php"><i class="app-menu__icon fa fa-file-o"></i><span class="app-menu__label">Файли</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Таблиці</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="table-basic.php"><i class="icon fa fa-circle-o"></i> Базові Таблиці</a></li>
-            <li><a class="treeview-item" href="table-data-table.php"><i class="icon fa fa-circle-o"></i> Інші Таблиці</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Дічь якась</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="page-invoice.php"><i class="icon fa fa-circle-o"></i> Друкована дічь</a></li>
-            <li><a class="treeview-item" href="page-calendar.php"><i class="icon fa fa-circle-o"></i> Календарна дічь</a></li>
-          </ul>
-        </li>
+        <li><a class="app-menu__item " href="added.php"><i class="app-menu__icon fa fa-plus-square-o"></i><span class="app-menu__label">Додати</span></a></li>
+        <li><a class="app-menu__item " href="studyhours.php"><i class="app-menu__icon fa fa-clock-o"></i><span class="app-menu__label">Розподіл навчальних годин</span></a></li>
       </ul>
+
     </aside>
     <main class="app-content">
       <div class="app-title">
@@ -96,8 +89,24 @@
             <form method="post" action='down_students.php' enctype="multipart/form-data">
             <label for="select">Оберіть групу </label>
             <select name="select">
-          <option value="PI">PI</option>
-          <option value="ST">ST</option>
+
+             <?php
+           $query ="SELECT * FROM `group` ";
+ 
+           $result = mysqli_query($con, $query) or die("Ошибка " . mysqli_error($link)); 
+           if($result)
+           {
+            
+               while ($row = mysqli_fetch_row($result)) {
+                   echo "<option value=".$row[1]."|".$row[2]."|".$row[4].">".$row[1].",".$row[2]."курс,".$row[4]."</option>";
+               }
+          
+                
+               mysqli_free_result($result);
+           }
+           ?>
+          
+         
       </select>
   <div>
     <label for="stu">Оберіть </label>
@@ -118,7 +127,7 @@
           <div class="tile">
             <h3 class="tile-title">Приклади</h3>
            
-          <?php  require('example.php')?>
+          <?php  require("example.php");?>
 
             
           </div>

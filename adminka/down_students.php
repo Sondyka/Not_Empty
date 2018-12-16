@@ -3,7 +3,8 @@ require "../Classes/PHPExcel.php";
 require("../DB/connection.php");
 if (isset($_FILES['studfile'])&&isset($_POST['downstudent'])){
 $filename=$_FILES['studfile']['name'];
-$select= $_POST['select'];
+
+$select=explode("|", $_POST['select']);
 $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/adminka/uploads/';
 $filepath= $uploaddir.$filename;
 if (move_uploaded_file($_FILES['studfile']['tmp_name'],$filepath )) {
@@ -14,7 +15,9 @@ $lines = file($uploaddir.$filename);
 $count=count($lines);
 
 for($i=0;$i<$count;$i++){
- @mysqli_query($con,'INSERT INTO `students`(`group`, `PIB`, `id_stud`) VALUES ("'.$select.'","'.$lines[$i].'",NULL)');
+
+  
+ @mysqli_query($con,'INSERT INTO `students`(`group`, `PIB`, `id_stud`, `kurs`, `form`) VALUES ("'.$select[0].'","'.$lines[$i].'",NULL,"'.$select[1].'","'.$select[2].'")');
 }
 
   }elseif($type=='xls'||$type=='xlsx'){
@@ -29,8 +32,8 @@ for($i=0;$i<$count;$i++){
              for($i=0; $i<$highestColumn; $i++){ 
 
                $student = $worksheet->getCellByColumnAndRow($i, $row);
-            echo $student;
-            @mysqli_query($con,' INSERT INTO `students`(`group`, `PIB`, `id_stud`) VALUES ("'.$select.'","'.$student.'",NULL)');
+           
+            @mysqli_query($con,' INSERT INTO `students`(`group`, `PIB`, `id_stud`, `kurs`, `form`) VALUES ("'.$select[0].'","'.$student.'",NULL,"'.$select[1].'","'.$select[2].'")');
            
 
               }

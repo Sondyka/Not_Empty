@@ -28,21 +28,12 @@
       </div>
       
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Головна</span></a></li>
+      <li><a class="app-menu__item active" href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Головна</span></a></li>
         <li><a class="app-menu__item" href="files.php"><i class="app-menu__icon fa fa-file-o"></i><span class="app-menu__label">Файли</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Таблиці</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="table-basic.php"><i class="icon fa fa-circle-o"></i>Базові Таблиці</a></li>
-            <li><a class="treeview-item" href="table-data-table.php"><i class="icon fa fa-circle-o"></i> Інші Таблиці</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Щось тут буде</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="page-invoice.php"><i class="icon fa fa-circle-o"></i> Друковане щось</a></li>
-           
-          </ul>
-        </li>
+        <li><a class="app-menu__item " href="added.php"><i class="app-menu__icon fa fa-plus-square-o"></i><span class="app-menu__label">Додати</span></a></li>
+        <li><a class="app-menu__item " href="studyhours.php"><i class="app-menu__icon fa fa-clock-o"></i><span class="app-menu__label">Розподіл навчальних годин</span></a></li>
       </ul>
+
     </aside>
     <main class="app-content">
       <div class="app-title">

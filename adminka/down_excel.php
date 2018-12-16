@@ -8,12 +8,7 @@
 			}
 			return true;
 		}
-		@mysqli_query($con,'DELETE FROM `otherheadlines`');
-		@mysqli_query($con,'DELETE FROM `commonheadline`');
-		@mysqli_query($con,'DELETE FROM `group` ');
-		@mysqli_query($con,'DELETE FROM `subject`');
-		@mysqli_query($con,'DELETE FROM `excel`');
-		@mysqli_query($con,'DELETE FROM `comexcel`');
+		
 		
 
 ?>
@@ -21,11 +16,18 @@
 require "../Classes/PHPExcel.php";
 require("../DB/connection.php");
 
-if (isset($_FILES['excelfile'])&&isset($_POST['downexcel'])){
+if (isset($_FILES['excelfile']) && isset($_POST['downexcel'])){
+
 $filename=$_FILES['excelfile']['name'];
 $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Home/adminka/uploads/';
 $loadfile= $uploaddir.$filename;
 if (move_uploaded_file($_FILES['excelfile']['tmp_name'],$loadfile )) {
+	@mysqli_query($con,'DELETE FROM `otherheadlines`');
+	@mysqli_query($con,'DELETE FROM `commonheadline`');
+	@mysqli_query($con,'DELETE FROM `group` ');
+	@mysqli_query($con,'DELETE FROM `subject`');
+	@mysqli_query($con,'DELETE FROM `excel`');
+	@mysqli_query($con,'DELETE FROM `comexcel`');
 $excelReader = PHPExcel_IOFactory::createReaderForFile($loadfile);
 $excelObj = $excelReader->load($loadfile);
 $worksheet = $excelObj->getSheet(0);
@@ -45,6 +47,7 @@ $highestColumn = PHPExcel_Cell::columnIndexFromString($highestColumn);
 	
 	for($i=1; $i<$highestColumn; $i++){ 
 		$cell0 = $worksheet->getCellByColumnAndRow($i, $row);
+		$cell0=(string)$cell0;
 		$rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn0 . $row,NULL,TRUE,FALSE);
 		if(isEmptyRow(reset($rowData))){break;} 
 		
@@ -62,7 +65,7 @@ $highestColumn = PHPExcel_Cell::columnIndexFromString($highestColumn);
 			@mysqli_query($con,'INSERT INTO `group`(`id_group`, `name_group`, `kurs`, `count`, `form`) VALUES (NULL,"'.$group.'","'.$kurs.'",'.$count.',"'.$form.'")');
 	}
 			
-	if((string)$cell0=="") {$cell0="-";}
+	if(trim($cell0)==""||$cell0=="") {$cell0=0;}
 	     if ($i>3 && $i<11){
 			@mysqli_query($con,'INSERT INTO `comexcel`(`id_row`, `id_cell`, `value`) VALUES ('.$rows.','.$o.',"'.$cell0.'")');
        

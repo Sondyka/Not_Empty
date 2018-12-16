@@ -60,10 +60,9 @@ echo '<!DOCTYPE html>
                         <a href="index.php">Головна</a>
                     </li>
                     <li>
-                        <a href="schedule.php">Розклад</a>
-                    </li>
+                        <a href="schedule.php">Розклад</a></li>
                     <li>
-                        <a href="blog.php">Для студентів</a>
+                        <a href="rating.php">Для студентів</a>
                     </li>
                 </ul>
             </div>
@@ -82,11 +81,10 @@ echo '<!DOCTYPE html>
                     </h2>
                     <hr>
                 </div>
-                <div class="col-md-6">';
-            
-               echo' </div>
-                <div class="col-md-6">';
-                                  echo' </div>
+                <div class="col-12">';
+                require("scheduletbl.php");
+            echo'  </div>
+                
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -99,25 +97,8 @@ echo '<!DOCTYPE html>
                         <strong>Team</strong>
                     </h2>
                     <hr>
-                </div>';
-                
-                $tbl='SELECT * FROM `rozklad` 
-                INNER JOIN `group` ON `rozklad`.`id_group` = `group`.`id_group`
-                INNER JOIN `subject` ON `rozklad`.`id_subject` = `subject`.`id_subject`
-                INNER JOIN `audience` ON `rozklad`.`id_audience` = `audience`.`id_audience`
-                INNER JOIN `weekday` ON `rozklad`.`id_week` = `weekday`.`id_week`
-                WHERE `rozklad`.`id_week`=1';
-                if ($result = $con->query($tbl)) {
-
-                    /* fetch associative array */
-                    while ($row = $result->fetch_assoc()) {
-
-echo $row['name_group']." ".$row['name_subject']." ".$row['audience_number']." ".$row['weekday'];
-
-                    }
-                }
-            
-               echo' <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
 
