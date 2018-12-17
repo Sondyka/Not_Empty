@@ -15,8 +15,6 @@ echo'<!DOCTYPE html>
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Automated Teachers Place</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,6 +31,7 @@ echo'<!DOCTYPE html>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -70,31 +69,31 @@ echo'<!DOCTYPE html>
         </div>
         <!-- /.container -->
     </nav>
-
     <div class="container">
 
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Оцінки
-                        <strong>студентів</strong>
-                    </h2>
-                    <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                   
-                </div>
-                <div class="col-lg-12 text-center">
-                    
-                </div>
-                
-              
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center"><i><b>Оцінки студентів</b></i>
+                </h2>
+                <hr>
             </div>
+            <div class="col-12">
+            ';
+            require("rattbl.php");
+        echo' 
+            </div>
+            
+            <div class="clearfix"></div>
         </div>
-
     </div>
-    <!-- /.container -->
+
+
+</div>
+<!-- /.container -->
+                 
+             
 
     <footer>
         <div class="container">

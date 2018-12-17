@@ -5,7 +5,7 @@
 }
 
 .searchTerm {
-  float: left;
+ 
   width: 57%;
   border: 3px solid #223685;
   padding: 5px;
@@ -34,72 +34,64 @@
     color: #00126A;
 
 }
+.brd {
+    border: 4px double black;
+    height: 50px;
+    }
+    
 </style>
 
 <?php
 
-$grparr=array();
-$weekd=array();
-$res = mysqli_query($con, 'SELECT DISTINCT concat(`group`,"|",`kurs`,"|",`form`) as grp FROM `rozklad`') or die("Ошибка " . mysqli_error($link)); 
-if($res)
-{
-  while($row = mysqli_fetch_row($res)){
-    $grparr[] = $row[0];
- 
-  }
-}
-
-
-$res = mysqli_query($con, 'SELECT DISTINCT  `weekday` FROM `rozklad`') or die("Ошибка " . mysqli_error($link)); 
-if($res)
-{
-  while($row = mysqli_fetch_row($res)){
-    $weekd[] = $row[0];
- 
-  }
-}
-
-
 
 echo'<div class="col-12  center"><input type="text" class = "searchTerm" id="Search" onkeyup="myFunction()" placeholder="Введіть пошукове слово" ></div>
-<div class="row">';
+<div class="col-10">';
 
 
-foreach ($grparr as &$value0) {
-    $piec=explode("|",$value0);
-    echo"<div class='col-sm-6 target'>";
-    echo '<div class="grp">Група '.$piec[0].' '.$piec[1].' курс '.$piec[2].'</div>';
-    foreach ($weekd as &$value) {
-    $res = mysqli_query($con,'SELECT * FROM `rozklad` WHERE `weekday`= "'.$value.'" AND `group`="'.$piec[0].'" AND`kurs`="'.$piec[1].'" AND`form`="'.$piec[2].'"');
-    echo'<table border=1 width="90%">';
-    if(mysqli_num_rows($res) != 0)
-    {
-        
-        
-         echo'<tr> ';
-        echo'<th colspan="3"class=" dy" >'.$value.'</th>
-        </tr>';
-   
-  while($row = mysqli_fetch_row($res)){
-    
-    
-    echo'
-  <tr>
-    <td>'.$row[4].'</td>
-    <td>'.$row[1].'</td>
-    <td>'.$row[3].'</td>
-  </tr>
-';
+
+
+echo'<div class="row ">
+<div class="col-md-1 brd ">
+
+</div>
+<div class="col-md-3 brd ">ПІБ
+</div>
+<div class="col-md-3 brd ">Предмет
+</div>
+<div class="col-md-3 brd ">Тип оцінки
+</div>
+<div class="col-md-2 brd ">Оцінка(по 100 бальній )
+</div>
+</div>';
+$res = mysqli_query($con, 'SELECT * FROM rating INNER JOIN subject ON subject.id_subject =rating.id_subject INNER JOIN students ON students.id_stud=rating.id_stud ') or die("Ошибка " . mysqli_error($link)); 
+if($res)
+{
  
+  while($row = mysqli_fetch_assoc($res)){
+
+   echo'<div class="row  target">
+   <div class="col-md-1 brd ">
+   <i class="fa fa-user-circle" aria-hidden="true"></i>
+   </div>
+   <div class="col-md-3 brd ">'.$row['PIB'].'
+   </div>
+   <div class="col-md-3 brd ">'.$row['name_subject'].'
+   </div>
+   <div class="col-md-3 brd ">'.$row['type'].'
+   </div>
+   <div class="col-md-2 brd ">'.$row['rat'].'
+   </div>
+   </div>';
+
   }
-       
- 
+
 }
-echo'</table>'; 
-}
-echo"</div>";
-}
-echo"</div>";
+
+
+echo"</div> ";
+
+
+
 
 
 
